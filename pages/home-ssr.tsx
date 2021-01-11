@@ -1,17 +1,19 @@
-import { InferGetStaticPropsType } from 'next'
+import { InferGetServerSidePropsType } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 import { getAllPosts } from '../lib/db'
 
-const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Home2 = (
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
   return (
     <Layout>
       <Head>
-        <title>e-commerce</title>
+        <title>Server Side Rendering</title>
       </Head>
 
-      <h1>Welcome to SSG HomePage</h1>
+      <h1>Welcome to SSR HomePage</h1>
       <h2>TIMESTAMP {Date.now()}</h2>
       <h2>Latest Posts</h2>
 
@@ -26,15 +28,12 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           )
         })}
       </ul>
-      <Link href="/create-post">
-        <a>create post</a>
-      </Link>
     </Layout>
   )
 }
-export default Home
+export default Home2
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   try {
     const posts = await getAllPosts()
     return { props: { posts } }
