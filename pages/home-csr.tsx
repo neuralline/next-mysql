@@ -21,7 +21,6 @@ const Home3 = () => {
       <Head>
         <title>client side rendering</title>
       </Head>
-      <Layout></Layout>
 
       <h1>Welcome to SSG HomePage</h1>
       <h2>TIMESTAMP {Date.now()}</h2>
